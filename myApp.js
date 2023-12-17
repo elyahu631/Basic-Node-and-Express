@@ -4,6 +4,12 @@ let express = require("express");
 let app = express();
 const path = require("path");
 
+// Logger Middleware
+app.use(function(req, res, next) {
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
+  next();
+});
+
 // Middleware for serving static files
 app.use("/public", express.static(path.join(__dirname, "public")));
 
