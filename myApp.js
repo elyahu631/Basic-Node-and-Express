@@ -11,6 +11,11 @@ app.get("/", function (req, res) {
   res.sendFile(absolutePath);
 });
 
+// Route for the /json path
+app.get('/json', function(req, res) {
+  res.json({"message": "Hello json"});
+});
+
 console.log("Hello World"); //node myApp.js
 
 module.exports = app;
