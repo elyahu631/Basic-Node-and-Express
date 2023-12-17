@@ -5,7 +5,7 @@ let app = express();
 const path = require("path");
 
 // Logger Middleware
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
 });
@@ -28,13 +28,21 @@ app.get("/json", function (req, res) {
   res.json({ message: message });
 });
 
-app.get('/now', function(req, res, next) {
-  req.time = new Date().toString();
-  next();
-}, function(req, res) {
-  res.json({time: req.time});
-});
+app.get(
+  "/now",
+  function (req, res, next) {
+    req.time = new Date().toString();
+    next();
+  },
+  function (req, res) {
+    res.json({ time: req.time });
+  }
+);
 
+app.get('/:word/echo', function(req, res) {
+  const word = req.params.word;
+  res.json({echo: word});
+});
 
 console.log("Hello World"); //node myApp.js
 
