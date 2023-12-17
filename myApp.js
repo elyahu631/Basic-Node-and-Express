@@ -54,6 +54,12 @@ app.get('/name', function(req, res) {
   res.json({ name: `${firstName} ${lastName}` });
 });
 
+app.post('/name', function(req, res) {
+  const firstName = req.body.first;
+  const lastName = req.body.last;
+  res.json({ name: `${firstName} ${lastName}` });
+});
+
 console.log("Hello World"); //node myApp.js
 
 module.exports = app;
