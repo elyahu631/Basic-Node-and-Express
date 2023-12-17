@@ -1,7 +1,8 @@
 // myApp.js
 require("dotenv").config();
 let express = require("express");
-let app = express();
+const bodyParser = require('body-parser');
+const  app = express();
 const path = require("path");
 
 // Logger Middleware
@@ -9,6 +10,9 @@ app.use(function (req, res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
 });
+
+// Body-parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));  // Use body-parser middleware
 
 // Middleware for serving static files
 app.use("/public", express.static(path.join(__dirname, "public")));
